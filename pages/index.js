@@ -13,6 +13,7 @@ export async function getStaticProps(context) {
 }
 
 export default function Home(props) {
+  console.log("first getStaticProps");
   console.log(props);
   const handleOnClickBtnClick = () => {
     console.log("Button clicked");
