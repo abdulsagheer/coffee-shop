@@ -3,6 +3,7 @@ import Image from "next/image";
 import Banner from "../components/Banner/Banner";
 import styles from "../styles/Home.module.scss";
 import Hero from "../public/images/hero-image.png";
+import Card from "../components/Card/Card";
 
 export default function Home() {
   const handleOnClickBtnClick = () => {
@@ -25,6 +26,11 @@ export default function Home() {
         <div className={styles.heroImage}>
           <Image src={Hero} alt="hero" />
         </div>
+        <Card
+          title="Coffee 1"
+          image="/images/hero-image.png"
+          href="/coffee-store/coffee-1"
+        />
       </main>
     </div>
   );
