@@ -26,11 +26,32 @@ export default function Home() {
         <div className={styles.heroImage}>
           <Image src={Hero} alt="hero" />
         </div>
-        <Card
-          title="Coffee 1"
-          image="/images/hero-image.png"
-          href="/coffee-store/coffee-1"
-        />
+        <div className={styles.cardLayout}>
+          <Card
+            title="Coffee 1"
+            image="/images/hero-image.png"
+            href="/coffee-store/coffee-1"
+            className={styles.card}
+          />
+          <Card
+            title="Coffee 1"
+            image="/images/hero-image.png"
+            href="/coffee-store/coffee-1"
+            className={styles.card}
+          />
+          <Card
+            title="Coffee 1"
+            image="/images/hero-image.png"
+            href="/coffee-store/coffee-1"
+            className={styles.card}
+          />
+          <Card
+            title="Coffee 1"
+            image="/images/hero-image.png"
+            href="/coffee-store/coffee-1"
+            className={styles.card}
+          />
+        </div>
       </main>
     </div>
   );
