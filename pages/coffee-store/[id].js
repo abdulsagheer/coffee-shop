@@ -5,7 +5,7 @@ const CoffeeStore = () => {
   const router = useRouter();
   return (
     <div>
-      <h1>CoffeeStore {router.query.id}</h1>
+      <h1>CoffeeStore - {router.query.id}</h1>
       <button>
         <Link href="/">Back to Home</Link>
       </button>
