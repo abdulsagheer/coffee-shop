@@ -4,11 +4,12 @@ import Banner from "../components/Banner/Banner";
 import styles from "../styles/Home.module.scss";
 import Hero from "../public/images/hero-image.png";
 import Card from "../components/Card/Card";
-import coffeeStoresData from "../data/coffee-stores.json";
+import { fetchCoffeeStore } from "../lib/coffee-stores";
 
 export async function getStaticProps(context) {
+  const coffeeStores = await fetchCoffeeStore();
   return {
-    props: { coffeeStores: coffeeStoresData },
+    props: { coffeeStores },
   };
 }
 
@@ -36,7 +37,7 @@ export default function Home(props) {
           <Image src={Hero} alt="hero" />
         </div>
         {props.coffeeStores.length > 0 && (
-          <h2 className={styles.heading}>Bangalore Stores</h2>
+          <h2 className={styles.heading}>Toronto Stores</h2>
         )}
 
         <div className={styles.cardLayout}>

@@ -1,5 +1,6 @@
 .container {
   margin-bottom: 14rem;
+  height: 100%;
 
 
   .main {
@@ -14,6 +15,7 @@
       position: absolute;
       top: 0px;
       z-index: 1;
+      background-repeat: repeat-y;
     }
 
     .heading {

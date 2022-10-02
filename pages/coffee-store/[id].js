@@ -43,7 +43,9 @@ const CoffeeStore = (props) => {
 
   const { address, name, neighbourhood, imgUrl } = props.coffeeStore;
 
-  const handleUpvoteButton = () => {};
+  const handleUpvoteButton = () => {
+    alert("You have clicked the Upvote button");
+  };
 
   return (
     <div className={styles.layout}>
