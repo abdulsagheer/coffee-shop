@@ -52,7 +52,7 @@ const CoffeeStore = (props) => {
   return (
     <div className={styles.layout}>
       <Head>
-        <title>{name}</title>
+        <title>Coffee Store | {name}</title>
       </Head>
       <div className={styles.container}>
         <div className={styles.col1}>
