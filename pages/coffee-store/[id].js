@@ -1,69 +1,106 @@
+import { useRouter } from "next/router";
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import coffeeStoresData from "./../../data/coffee-stores.json";
+
+import cls from "classnames";
+
+import coffeeStoresData from "../../data/coffee-stores.json";
+
 import styles from "../../styles/coffee-store.module.scss";
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(staticProps) {
+  const params = staticProps.params;
+  console.log("params", params);
   return {
     props: {
-      coffeeStore: coffeeStoresData.find(
-        (coffeeStore) => String(coffeeStore.id) === params.id
-      ),
+      coffeeStore: coffeeStoresData.find((coffeeStore) => {
+        return coffeeStore.id.toString() === params.id; //dynamic id
+      }),
     },
   };
 }
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   const paths = coffeeStoresData.map((coffeeStore) => {
     return {
       params: {
-        id: String(coffeeStore.id),
+        id: coffeeStore.id.toString(),
       },
     };
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
 const CoffeeStore = (props) => {
   const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   const { address, name, neighbourhood, imgUrl } = props.coffeeStore;
 
-  if (router.isFallback) {
-    return <h1>Loading...</h1>;
-  }
+  const handleUpvoteButton = () => {};
+
   return (
     <div className={styles.layout}>
       <Head>
         <title>{name}</title>
       </Head>
-      <h1>CoffeeStore - {router.query.id}</h1>
       <div className={styles.container}>
         <div className={styles.col1}>
-          <div className={styles.backToHome}>
+          <div className={styles.backToHomeLink}>
             <Link href="/">
-              <a>Back to Home</a>
+              <a>Back to home</a>
             </Link>
           </div>
           <div className={styles.nameWrapper}>
-            <p className={styles.name}>{name}</p>
+            <h1 className={styles.name}>{name}</h1>
           </div>
-        </div>
-        <div className={styles.col2}>
           <Image
             src={imgUrl}
-            alt="coffee store"
-            height={360}
             width={600}
-            className={styles.storeImage}
+            height={360}
+            className={styles.storeImg}
+            alt={name}
           />
-          <p>{address}</p>
-          <p>{neighbourhood}</p>
+        </div>
+
+        <div className={cls("glass", styles.col2)}>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/images/icons/places.svg"
+              width="24"
+              height="24"
+              alt="icons"
+            />
+            <p className={styles.text}>{address}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/images/icons/nearMe.svg"
+              width="24"
+              height="24"
+              alt="icons"
+            />
+            <p className={styles.text}>{neighbourhood}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/images/icons/star.svg"
+              width="24"
+              height="24"
+              alt="icons"
+            />
+            <p className={styles.text}>1</p>
+          </div>
+
+          <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
+            Up vote!
+          </button>
         </div>
       </div>
     </div>
