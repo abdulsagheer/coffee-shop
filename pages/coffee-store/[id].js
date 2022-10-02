@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import coffeeStoresData from "./../../data/coffee-stores.json";
+import styles from "../../styles/coffee-store.module.scss";
 
 export async function getStaticProps({ params }) {
-  console.log("params", params.id);
   return {
     props: {
       coffeeStore: coffeeStoresData.find(
@@ -38,18 +38,34 @@ const CoffeeStore = (props) => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div>
+    <div className={styles.layout}>
       <Head>
         <title>{name}</title>
       </Head>
       <h1>CoffeeStore - {router.query.id}</h1>
-      <button>
-        <Link href="/">Back to Home</Link>
-      </button>
-      <p>{address}</p>
-      <p>{name}</p>
-      <p>{neighbourhood}</p>
-      <Image src={imgUrl} alt="coffee store" height={700} width={1200} />
+      <div className={styles.container}>
+        <div className={styles.col1}>
+          <div className={styles.backToHome}>
+            <Link href="/">
+              <a>Back to Home</a>
+            </Link>
+          </div>
+          <div className={styles.nameWrapper}>
+            <p className={styles.name}>{name}</p>
+          </div>
+        </div>
+        <div className={styles.col2}>
+          <Image
+            src={imgUrl}
+            alt="coffee store"
+            height={360}
+            width={600}
+            className={styles.storeImage}
+          />
+          <p>{address}</p>
+          <p>{neighbourhood}</p>
+        </div>
+      </div>
     </div>
   );
 };
