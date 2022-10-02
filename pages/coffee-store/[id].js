@@ -22,6 +22,11 @@ export async function getStaticPaths() {
 
 const CoffeeStore = (props) => {
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div>
       <h1>CoffeeStore - {router.query.id}</h1>
