@@ -3,18 +3,18 @@ import Link from "next/link";
 import styles from "./Card.module.scss";
 import cls from "classnames";
 
-const Card = ({ title, image, href }) => {
+const Card = (props) => {
   return (
-    <Link href={href}>
+    <Link href={props.href}>
       <a className={styles.cardLink}>
         <div className={cls("glass", styles.container)}>
           <div className={styles.cardHeaderWrapper}>
-            <h1 className={styles.cardHeader}>{title}</h1>
+            <h2 className={styles.cardHeader}>{props.name}</h2>
           </div>
           <div className={styles.cardImageWrapper}>
             <Image
               className={styles.cardImage}
-              src={image}
+              src={props.imgUrl}
               width={260}
               height={160}
               alt="card"
